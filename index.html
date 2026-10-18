@@ -319,7 +319,10 @@ async function sync(manual){const u=CFG.link.trim();if(!u){manual&&toast('Chưa 
   const a=loadRows('cat',A[CFG.s1]),b=loadRows('promo',A[CFG.s2]);toast(`Đồng bộ xong: ${a} SP, ${b} KM`);fetchStock(1)}
  catch(e){manual&&toast('Không tải được dữ liệu – kiểm tra mạng')}finally{syncBtn(false)}}
 /* lookup */
-function parseRange(t){const m=String(t).match(/\d{1,2}\/\d{1,2}\/\d{4}/g);if(!m||m.length<2)return null;const f=x=>{const a=x.split('/');return new Date(+a[2],a[1]-1,+a[0])},e=f(m[m.length-1]);e.setHours(23,59,59);return[f(m[0]),e]}
+function parseRange(t){t=String(t);let P=[],m;const iso=/(\d{4})-(\d{1,2})-(\d{1,2})/g;while(m=iso.exec(t))P.push([+m[1],+m[2],+m[3]]);
+ if(!P.length){const re=/(\d{1,2})[\/.\-](\d{1,2})(?:[\/.\-](\d{2,4}))?/g;while(m=re.exec(t))P.push([m[3]?(m[3].length==2?2000+ +m[3]:+m[3]):0,+m[2],+m[1]])}
+ if(P.length<2)return null;const ey=P[P.length-1][0]||new Date().getFullYear();P.forEach(p=>{if(!p[0])p[0]=ey});
+ const f=p=>new Date(p[0],p[1]-1,p[2]),e=f(P[P.length-1]);e.setHours(23,59,59);return[f(P[0]),e]}
 function status(t){const r=parseRange(t),n=new Date();if(!r)return['Chưa rõ thời gian','var(--mu)','on'];return n<r[0]?['Chưa tới hạn KM','var(--wa)','off']:n>r[1]?['Đã hết hạn KM','var(--bad)','off']:['Đang khuyến mãi','var(--ok)','on']}
 function lookup(raw){const code=String(raw).trim().replace(/\s/g,'');const row=catBar[key(code)];let sku=row&&row.s;if(!sku&&DB.om&&DB.om[code])sku=DB.om[code];if(!sku&&OM2[code])sku=OM2[code];
  if(!sku){if(/^\d{7}$/.test(code))sku=code;else if(CFG.osku&&/^2000\d{9}$/.test(code))sku=code.substr(5,7)}
@@ -327,8 +330,8 @@ function lookup(raw){const code=String(raw).trim().replace(/\s/g,'');const row=c
  const l0=(pr[0]&&pr[0].l)||(cat&&cat.p)||0,ap=act.filter(p=>p.p>0);
  return{code,sku:sku||'',cat,pr,found:!!(cat||pr.length),name:(pr[0]&&pr[0].n)||(cat&&cat.n)||'',list:l0,price:ap.length?Math.min(...ap.map(p=>p.p)):l0,promo:act.length>0}}
 function card(L){if(!L.found){const b13=/^\d{13}$/.test(L.code)?L.code:'';return`<div class="card">${b13?`<svg id="bc" data-v="${b13}"></svg>`:''}<div class="nm">${L.sku?'Sản phẩm '+esc(L.sku):'Không tìm thấy mã '+esc(L.code)}</div><div class="mu">${DB.cat.length?'Mã này không có trong dữ liệu danh mục / khuyến mãi.':'Chưa có dữ liệu – vào ⚙️ Cài đặt để đồng bộ.'}</div></div>`}
- const bc=/^\d{13}$/.test(L.code)?L.code:(L.cat&&/^\d{13}$/.test(L.cat.b)?L.cat.b:''),l=L.list,hp=L.pr.some(p=>p.p>0),plain=[],ruled=[];
- L.pr.forEach(p=>(String(p.t||'').trim()?ruled:plain).push(p));
+ const bc=/^\d{13}$/.test(L.code)?L.code:(L.cat&&/^\d{13}$/.test(L.cat.b)?L.cat.b:''),l=L.list,AP=L.pr.filter(p=>status(p.d)[2]==='on'),NP=L.pr.filter(p=>status(p.d)[2]!=='on'),hp=AP.some(p=>p.p>0),plain=[],ruled=[];
+ AP.forEach(p=>(String(p.t||'').trim()?ruled:plain).push(p));
  const dt=d=>{const st=status(d),c=st[2]==='off'?(/hết/.test(st[0])?'bad':'wa'):'ok';return`<div class="tm ${c}" style="margin-bottom:6px">⏰ ${esc(d||'Chưa rõ thời gian')} · ${st[0]}</div>`};
  let h=`<div class="card">${bc?`<svg id="bc" data-v="${bc}"></svg>`:''}<div class="nm">${esc(L.name)}</div>${stk(L.sku)}<div class="pl"><small>Giá niêm yết${L.pr[0]&&L.pr[0].u?' / '+esc(L.pr[0].u):''}:</small><div class="v${hp?' cut':''}">${l?fmt(l):'-'}</div></div>`;
  const byP=new Map();plain.forEach(p=>{if(!(p.p>0))return;const a=byP.get(p.p)||byP.set(p.p,[]).get(p.p);if(a.indexOf(p.d)<0)a.push(p.d)});
@@ -338,6 +341,7 @@ function card(L){if(!L.found){const b13=/^\d{13}$/.test(L.code)?L.code:'';return
   const tot=p=>{const t=String(p.t);let m=t.match(/thứ\s*2.*?(\d[\d.]*)\s*(?:đ|vnd)/i);if(m&&l)return l+num(m[1]);m=t.match(/mua\s*2.*?giá\s*(\d[\d.]*)\s*(?:đ|vnd)/i);if(m)return num(m[1]);return/mua\s*1\s*tặng\s*1/i.test(t)&&l?l:0};
   const ln=A.map(p=>{const T=tot(p);return(p.p>0&&!one?`<p>• ${esc(p.t)} giá <b class="p">${fmt(p.p)}</b></p>`:`<p>• ${esc(p.t)}</p>`)+(T?`<p><b class="p">→ Mua 2 sản phẩm giá ${fmt(T)}</b></p>`:'')}).join('');
   h+=`<div class="kmb"><h5>${one?'GIÁ KHUYẾN MÃI:':hp?'ƯU ĐÃI KHUYẾN MÃI':'THỂ LỆ KHUYẾN MÃI'}</h5>${one?`<h3 style="font-size:34px">${fmt(A[0].p)}</h3>`:'<h3>XEM CHI TIẾT BÊN DƯỚI</h3>'}<div class="kd"><p>📌 <b>CHI TIẾT ƯU ĐÃI:</b></p>${ln}</div></div>${dt(d)}`});
+ const seenNP={};NP.forEach(p=>{const k=p.d+'|'+status(p.d)[0];if(seenNP[k])return;seenNP[k]=1;h+=`<div class="tm wa" style="margin-top:6px">⏳ ${status(p.d)[0]}: ${esc(p.d||'')}</div>`});
  return h+'</div>'}
 /* scanner */
 let stream,track,scanning=false,H=null,looping=false,bd=null,zr=null,det=false,AC,LENS=[],last='',cnt=0,lastAt=0,lastC='',lastT=0,shMax=0,shLowAt=0,focusAt=0,CAPS={},askBusy=false,nRes=null;
