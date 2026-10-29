@@ -30,8 +30,7 @@ input,select{font:inherit;color:var(--tx);background:var(--in);border:1px solid 
 .cam{position:relative;background:#000;height:33dvh;min-height:180px;overflow:hidden;flex:none}
 .cam video{width:100%;height:100%;object-fit:cover}
 .frame{position:absolute;top:12%;bottom:12%;left:6%;right:6%;border:2px solid #fff;border-radius:14px;pointer-events:none}
-.frame i{position:absolute;left:0;right:0;top:50%;height:2px;background:#f33;animation:s 1.6s ease-in-out infinite alternate}
-@keyframes s{from{top:10%}to{top:90%}}
+.frame i{position:absolute;left:0;right:0;top:50%;height:2px;background:#f33}
 .row{display:flex;gap:8px;align-items:center;padding:8px 12px}.row label{font-weight:700;color:#c2185b}
 .ln{display:flex;justify-content:space-between;padding:0 12px;font-weight:700;font-size:14px}
 .tot{color:#c2185b;font-weight:800;font-size:20px;white-space:nowrap}
@@ -44,7 +43,6 @@ input,select{font:inherit;color:var(--tx);background:var(--in);border:1px solid 
 .it .ic{background:none;color:var(--mu);padding:6px;font-size:20px}
 .tabs{display:flex}.tabs button{flex:1;border-radius:0;background:#ddd;color:#555}.tabs button.on{color:#1a237e;background:#fff}
 .nm{font-size:18px;font-weight:700;margin-bottom:8px}.card{padding:16px;border-radius:18px;background:var(--card);box-shadow:0 2px 8px #0002;margin:10px 0}
-.pb{background:var(--in);border-radius:12px;padding:12px;margin-top:8px}.pb small{color:var(--mu);display:block;font-size:14px}
 .pr{font-size:30px;font-weight:800}
 .msg{padding:12px;border-radius:14px;background:var(--in);text-align:center;font-weight:700;font-size:14px}
 .set .card{margin:8px 0}.set h4{margin:0 0 8px}.set .r{display:flex;justify-content:space-between;align-items:center;gap:10px}.set .r input{width:auto}.set .r input[type=text]{width:100%}.mu{color:var(--mu);font-size:13px}
@@ -105,8 +103,7 @@ dialog:not([open]){display:none}dialog[open]{position:fixed;left:50%;top:50%;tra
 /* ===== hiệu năng camera + Scan N bàn phím số ===== */
 .cam video{-webkit-transform:translateZ(0);transform:translateZ(0)}
 .frame{box-shadow:none;border:2px solid #ffffffb3}
-.frame i{top:0;height:100%;background:linear-gradient(transparent 48.5%,rgba(255,60,60,.95) 48.5%,rgba(255,60,60,.95) 51.5%,transparent 51.5%);box-shadow:none;animation:s2 1.8s ease-in-out infinite alternate;will-change:transform}
-@keyframes s2{from{transform:translateY(-40%)}to{transform:translateY(40%)}}
+.frame i{top:0;height:100%;background:linear-gradient(transparent 48.5%,rgba(255,60,60,.95) 48.5%,rgba(255,60,60,.95) 51.5%,transparent 51.5%);box-shadow:none}
 .ctl{-webkit-backdrop-filter:none;backdrop-filter:none;background:#000a}
 .fring{position:absolute;width:56px;height:56px;margin:-28px 0 0 -28px;border:2px solid #fde047;border-radius:50%;pointer-events:none;animation:fr .7s ease-out forwards;z-index:3}
 @keyframes fr{from{transform:scale(1.6);opacity:1}to{transform:scale(.8);opacity:0}}
@@ -266,7 +263,7 @@ body{font-size:16px;line-height:1.4;background:var(--bg);color:var(--tx)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* ===== GIAO DIỆN v3: màu chữ nổi bật, ô giá to rõ, trùng CTKM, thẻ thành viên ===== */
-:root:root{--wn-bg:#fff4d6;--wn-bd:#f59e0b;--wn-tx:#6b3a05;--wn-hd:#b45309;--pcard:#0f172a}
+:root:root{--wn-bg:#fff4d6;--wn-bd:#f59e0b;--wn-tx:#6b3a05;--wn-hd:#b45309}
 @media (prefers-color-scheme:dark){:root:root:not([data-theme="light"]){--wn-bg:#3a2a06;--wn-bd:#f59e0b;--wn-tx:#fde9a8;--wn-hd:#fcd34d}}
 :root:root[data-theme="dark"]{--wn-bg:#3a2a06;--wn-bd:#f59e0b;--wn-tx:#fde9a8;--wn-hd:#fcd34d}
 /* thẻ sản phẩm */
@@ -477,6 +474,9 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 .hm .act.sm{padding:13px 16px}.hm .act.sm i{width:46px;height:46px;border-radius:16px}.hm .act.sm i svg{width:24px;height:24px}.hm .act.sm b{font-size:17px}
 </style>
 <style id="themefix">
+#totn{display:inline-block;min-width:1ch;text-align:left;font-variant-numeric:tabular-nums;transform-origin:50% 70%}
+#totn.pop{animation:totpop .42s cubic-bezier(.2,.9,.3,1.35)}
+@keyframes totpop{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-4px) scale(1.4);color:var(--ac)}100%{transform:translateY(0) scale(1)}}
 /* ===== MÀU THEO TỪNG MỤC (khớp nút ngoài trang chủ): Kiểm kê = xanh lá · Scan barcode = xanh dương · Test giá = cam ===== */
 :root{--gn-pr:#16a34a;--gn-ac:#15803d;--gn-1:#15803d;--gn-2:#22c55e;
  --bl-pr:#2563eb;--bl-ac:#1d4ed8;--bl-1:#1d4ed8;--bl-2:#3b82f6;
@@ -568,7 +568,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 <div class="row2"><input id="code" inputmode="numeric" placeholder="Mã vừa quét / nhập tay" autocomplete="off" enterkeyhint="next"><button class="ib sbtn" id="codeok" aria-label="Xác nhận mã"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button><input id="qty" type="number" value="1" min="1" placeholder="SL"></div>
 <div class="ln"><span id="sp" style="color:var(--ok)">SP: -</span><span id="gia" class="pc">Giá: -</span></div>
 <div class="row" id="holdrow" style="display:none"><button class="big" id="hold" style="margin:0">✋ GIỮ ĐỂ QUÉT MÃ</button></div>
-<div class="tbar"><span class="tot" id="tot">Tổng record: 0</span>
+<div class="tbar"><span class="tot" id="tot">Tổng record: <b id="totn">0</b></span>
 <div class="chips2"><label class="chip"><input type="checkbox" data-k="np"><span>Tên&amp;giá</span></label><label class="chip"><input type="checkbox" data-k="sl1"><span>SL1</span></label><label class="chip"><input type="checkbox" data-k="scanN"><span>Scan N</span></label></div>
 <button class="ib clr" onclick="clr()" aria-label="Xóa tất cả" title="Xóa tất cả"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>Xóa tất cả</span></button></div>
 <div class="panel"><div class="grab" id="grab"><i></i></div><div class="sc" id="slist"></div></div>
@@ -1101,7 +1101,6 @@ async function doOCR(bc,box,needData,my){OCRLOG='';
  stp('res','bad',OCRLOG);return''}
 const resolve7=(bc,box,needData)=>{const my=++ocrCtl.tok;ocrCtl.code=bc;return doOCR(bc,box,needData,my).catch(e=>{if(my===ocrCtl.tok)OCRLOG='Lỗi bộ đọc chữ: '+(e&&e.message||e);stp('res','bad',OCRLOG);dlog('✗ '+OCRLOG);return''}).then(r=>{if(my===ocrCtl.tok){ocrCtl.code='';ocrSt('')}return r})};
 const rememberSku=(bc,sku)=>{if(inData(sku)){DB.om=DB.om||{};DB.om[bc]=sku;saveDB()}else OM2[bc]=sku;try{learnPfx(bc,sku)}catch(e){}};
-function openDlg(d){d.showModal?d.showModal():d.setAttribute('open','')}
 function closeDlg(d){d.close?d.close():d.removeAttribute('open')}
 /* navigation */
 function go(id,keep){if(askBusy&&id!=='ses')qkCancel();try{var _a=document.activeElement;if(_a&&_a.blur&&/^(INPUT|TEXTAREA)$/.test(_a.tagName))_a.blur()}catch(e){}if(!keep&&HS[HS.length-1]!==id)HS.push(id);
@@ -1197,7 +1196,14 @@ function bindRows(el,s){const re=()=>el===$('slist')?renderS():renderD();el.oncl
  if(b.dataset.d!==undefined){const rr=s.rows[+b.dataset.d];if(!rr)return;cfm('Xóa dòng này?\n'+(rr.b||rr.c)+' ×'+rr.q,'Xóa',()=>{const k=s.rows.indexOf(rr);if(k>=0)s.rows.splice(k,1);saveSS();re()})}
  else if(b.dataset.e!==undefined){editRow(s,+b.dataset.e,re)}
  else if(b.dataset.w!==undefined){liveRow(s,+b.dataset.w,re)}  else if(b.dataset.s!==undefined){const r=s.rows[+b.dataset.s];dlgForm('Nhập SKU 7 số in trên tem',[{label:'SKU',value:'',mode:'numeric'}],'Lưu',v=>{const d=v[0].replace(/\D/g,'');if(d.length!==7){toast('Cần đúng 7 chữ số');return false}r.s=d;rememberSku(r.c,d);saveSS();re()})}}}
-function renderS(){const s=cur;$('sname').textContent=s.name;$('tot').textContent='Tổng record: '+s.rows.length;
+let TOTN=0,TOTS=null,TOTR=0;
+function setTot(n,anim){const el=$('totn');if(!el)return;cancelAnimationFrame(TOTR);const from=TOTN,d=n-from;TOTN=n;
+ if(!anim||!d||matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=n;return}
+ el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+ if(Math.abs(d)<2){el.textContent=n;return}
+ const t0=performance.now(),du=Math.min(700,220+Math.abs(d)*35);
+ const st=t=>{const p=Math.min(1,(t-t0)/du);el.textContent=Math.round(from+d*(1-Math.pow(1-p,3)));if(p<1)TOTR=requestAnimationFrame(st)};TOTR=requestAnimationFrame(st)}
+function renderS(){const s=cur;$('sname').textContent=s.name;{const same=TOTS===s;TOTS=s;setTot(s.rows.length,same)}
  const el=$('slist');el.innerHTML=s.rows.map((r,i)=>rowHTML(r,i,i===s.rows.length-1)).reverse().join('');bindRows(el,s)}
 function vendOf(r,L){const c2=r.s&&catSku[r.s];if(c2&&c2.v)return c2.v;if(L.cat&&L.cat.v)return L.cat.v;
  const b=[r.b,r.c,L.cat&&L.cat.b].map(x=>String(x||'').replace(/\D/g,'')).find(x=>/^893\d{10}$/.test(x));if(b){const a=PFX[b.slice(0,7)];if(a&&a.length)return a[0]}return ''}
