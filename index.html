@@ -467,7 +467,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 .ag .bx svg{display:block;width:220px;max-width:90%;height:48px;border-radius:4px;background:#fff}
 .ag .bx .d{font-size:15px;font-weight:800;letter-spacing:2px;color:var(--tx);font-variant-numeric:tabular-nums}
 
-/* thanh tiêu đề đồng bộ màu với ô ở trang chủ: Kiểm kê xanh dương · Scan barcode xanh lá · Test giá cam */
+/* thanh tiêu đề đồng bộ màu với ô ở trang chủ: Kiểm kê xanh dương · ScanBarcode xanh lá · Test giá cam */
 #kk .hd,#ses .hd,#list .hd{background:linear-gradient(135deg,#1d4ed8,#2563eb)}
 #tcs .hd,#ses.tcm .hd,#list.tcm .hd{background:linear-gradient(135deg,#15803d,#16a34a)}
 #price .hd{background:linear-gradient(135deg,#c2410c,#ea580c)!important}
@@ -477,7 +477,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 #totn{display:inline-block;min-width:1ch;text-align:left;font-variant-numeric:tabular-nums;transform-origin:50% 70%}
 #totn.pop{animation:totpop .42s cubic-bezier(.2,.9,.3,1.35)}
 @keyframes totpop{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-4px) scale(1.4);color:var(--ac)}100%{transform:translateY(0) scale(1)}}
-/* ===== MÀU THEO TỪNG MỤC (khớp nút ngoài trang chủ): Kiểm kê = xanh lá · Scan barcode = xanh dương · Test giá = cam ===== */
+/* ===== MÀU THEO TỪNG MỤC (khớp nút ngoài trang chủ): Kiểm kê = xanh lá · ScanBarcode = xanh dương · Test giá = cam ===== */
 :root{--gn-pr:#16a34a;--gn-ac:#15803d;--gn-1:#15803d;--gn-2:#22c55e;
  --bl-pr:#2563eb;--bl-ac:#1d4ed8;--bl-1:#1d4ed8;--bl-2:#3b82f6;
  --or-pr:#ea580c;--or-ac:#c2410c;--or-1:#c2410c;--or-2:#fb923c}
@@ -486,7 +486,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 #kk,#ses,#list,#det{--pr:var(--gn-pr);--ac:var(--gn-ac);--c1:var(--gn-1);--c2:var(--gn-2)}
 #tcs,#ses.tcm,#list.tcm,#det.tcm{--pr:var(--bl-pr);--ac:var(--bl-ac);--c1:var(--bl-1);--c2:var(--bl-2)}
 #price{--pr:var(--or-pr);--ac:var(--or-ac);--c1:var(--or-1);--c2:var(--or-2)}
-/* trang chủ: đảo màu Kiểm kê ↔ Scan barcode */
+/* trang chủ: đảo màu Kiểm kê ↔ ScanBarcode */
 .a1{background:linear-gradient(135deg,#15803d,#22c55e)!important}
 .a2{background:linear-gradient(135deg,#1d4ed8,#3b82f6)!important}
 /* thanh tiêu đề + nền nhuộm nhẹ theo màu mục */
@@ -505,7 +505,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 #price #pmode{padding:4px;gap:4px;background:var(--in);border:1px solid var(--line);border-radius:16px;overflow:visible}
 #price #pmode button{height:40px;padding:0;border-radius:12px;background:transparent;color:var(--mu);font-size:14.5px;box-shadow:none}
 #price #pmode button.on{background:linear-gradient(135deg,var(--c1),var(--pr));color:#fff;box-shadow:0 2px 6px #0002}
-/* Scan barcode: mọi nút cao bằng nhau, cách đều nhau */
+/* ScanBarcode: mọi nút cao bằng nhau, cách đều nhau */
 #ses .row2{display:flex;align-items:stretch;gap:8px;padding:10px 12px 0}
 #ses .row2>*{height:46px}
 #ses .row2 #code{flex:1;min-width:0;border-radius:14px}
@@ -536,26 +536,10 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 #ses .grab::before{display:none}
 #ses .grab{padding:18px 0 18px!important;min-height:56px!important}
 #ses .tbar{padding-bottom:10px}
-/* tên ứng dụng: ScanBarcode — hai nét chữ đậm/nhạt + vạch mã nhỏ */
-.w{font-style:normal;font-weight:500}
-.act b .w{opacity:.92}
-.brand b{font-size:clamp(19px,5.6vw,24px);font-weight:800;letter-spacing:-.3px;line-height:1.05}
-.brand b em{font-weight:500;letter-spacing:0}
-.brand b::after{content:"";display:block;width:46px;height:3px;margin-top:5px;border-radius:2px;opacity:.85;background:repeating-linear-gradient(90deg,var(--ac) 0 3px,transparent 3px 5px,var(--ac) 5px 6px,transparent 6px 9px,var(--ac) 9px 12px,transparent 12px 14px)}
-.brand span{text-transform:none;letter-spacing:.2px;font-size:clamp(10px,3vw,12px);font-weight:600}
-/* danh sách phiên: phiên đang hoạt động nổi bật theo màu mục */
-#llist .card{border-radius:20px;padding:14px}
-#llist .card .nm{font-size:16px;font-weight:700;margin-bottom:4px;word-break:break-word}
-#llist .card.actv{border:1.5px solid var(--pr);border-left-width:5px;background:color-mix(in srgb,var(--pr) 9%,var(--card));box-shadow:var(--sh)}
-#llist .card.actv .nm{font-weight:800}
-#llist .card .abg{display:flex;align-items:center;gap:7px;width:max-content;max-width:100%;margin:0 0 8px;padding:3px 11px 3px 9px;border-radius:999px;background:color-mix(in srgb,var(--pr) 16%,transparent);color:var(--ac);font-size:12px;font-weight:800;letter-spacing:.2px}
-#llist .card .abg::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pr);animation:abgp 1.8s ease-out infinite}
-@keyframes abgp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--pr) 50%,transparent)}70%,100%{box-shadow:0 0 0 7px transparent}}
-#llist .card>div:last-child{display:flex;gap:6px;margin-top:10px}
-#llist .card button{flex:1;min-width:0;height:40px;padding:0 4px;font-size:13px;border-radius:12px;box-shadow:none;background:var(--in)!important;color:var(--tx)}
-#llist .card button[data-a="c"]{background:var(--pr)!important;color:#fff}
-#llist .card button[data-a="d"]{background:color-mix(in srgb,var(--pr) 14%,var(--card))!important;color:var(--ac)}
-#llist .card button[data-a="x"]{background:color-mix(in srgb,var(--bad) 12%,var(--card))!important;color:var(--bad)}
+/* nhãn "Đang hoạt động": chữ luôn đủ tương phản */
+.abg{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .abg{color:#052e16}}
+:root[data-theme="dark"] .abg{color:#052e16}
 </style>
 </head><body>
 
@@ -564,7 +548,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 <div class="tb2"><button class="ib" onclick="cycleTheme()" aria-label="Đổi giao diện sáng/tối"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button><button class="ib" id="syncb" onclick="sync(1)" aria-label="Đồng bộ online"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></button><button class="ib" onclick="go('set')" aria-label="Cài đặt"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div></div>
 <div class="hm">
 <button class="act a1" onclick="go('kk')"><i><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></i><div><b>Kiểm kê hàng hóa</b><small>Quét, đếm số lượng, xuất Excel</small></div></button>
-<button class="act a2" onclick="go('tcs')"><i><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 8v8M11 8v8M14 8v8M17 8v8"/></svg></i><div><b>Scan<em class="w">Barcode</em></b><small>Ghi mã 13 số và SKU 7 số</small></div></button>
+<button class="act a2" onclick="go('tcs')"><i><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 8v8M11 8v8M14 8v8M17 8v8"/></svg></i><div><b>ScanBarcode</b><small>Ghi mã 13 số và SKU 7 số</small></div></button>
 <button class="act a3" onclick="go('price')"><i><svg viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></i><div><b>Test giá sản phẩm</b><small>Giá, khuyến mãi, tồn, giỏ hàng</small></div></button>
 <div class="stat" id="stat"></div></div></section>
 
@@ -576,7 +560,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 <button class="act a1 sm" onclick="delAll('kk')"><i><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></i><div><b>Xóa dữ liệu phiên</b><small>Xóa các dòng của phiên gần nhất</small></div></button>
 <button class="act a1 sm" onclick="go('set')"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></i><div><b>Cài đặt</b><small>Âm thanh, camera, dữ liệu</small></div></button></div></section>
 
-<section class="scr" id="tcs"><div class="hd"><button class="bk ib"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button><span>Scan<em class="w">Barcode</em></span></div><div class="hm">
+<section class="scr" id="tcs"><div class="hd"><button class="bk ib"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button><span>ScanBarcode</span></div><div class="hm">
 <button class="act a2" onclick="newSes('tc')"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></i><div><b>Phiên scan mới</b><small>Đặt tên rồi bắt đầu quét</small></div></button>
 <button class="act a2" onclick="contSes('tc')"><i><svg viewBox="0 0 24 24"><polygon points="7 4 20 12 7 20 7 4"/></svg></i><div><b>Tiếp tục phiên mới nhất</b><small>Quét tiếp phiên gần nhất</small></div></button>
 <button class="act a2" onclick="openList('tc')"><i><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></i><div><b>Danh sách phiên</b><small>Xem, đổi tên, xóa các phiên</small></div></button></div></section>
@@ -630,7 +614,7 @@ html.kb .scr.on .cam{height:var(--camh,160px)!important;min-height:var(--camh,16
 <div class="gt">Đọc 7 số (SKU) trên tem</div>
 <div class="grp"><div class="gi"><div class="gx"><small>Mã vạch 13 số và dãy 7 số (SKU) in trên tem là HAI thứ khác nhau, không liên quan gì đến nhau. App không lấy bất kỳ con số nào trong mã 13 số để làm SKU. Chỉ khi mã 13 số chưa có trong danh mục, app mới cố đọc chữ 7 số in trên tem; đọc được thì điền, không đọc được thì để trống. Số lạ (không có trong danh mục) phải đọc trùng 3 lần mới được nhận để tránh sai; số có trong danh mục chỉ cần 1–2 lần nên rất nhanh.</small></div></div>
 <div class="gi r"><div class="gx"><b>Tự đọc khi Test giá</b><small>Quét mã 13 số không có trong danh mục → đọc 7 số trên tem rồi hiện giá và khuyến mãi.</small></div><input type="checkbox" data-k="ocrTest"></div>
-<div class="gi r"><div class="gx"><b>Tự đọc khi Scan barcode</b><small>Chỉ chạy khi nút "Tên&giá" ở màn hình Scan barcode đang bật và mã 13 số chưa có trong danh mục. Đọc được thì tự điền 7 số vào cột SKU; đọc không được thì để trống – bạn bấm nút hình thẻ giá cạnh dòng để nhập tay.</small></div><input type="checkbox" data-k="ocrScan"></div>
+<div class="gi r"><div class="gx"><b>Tự đọc khi ScanBarcode</b><small>Chỉ chạy khi nút "Tên&giá" ở màn hình ScanBarcode đang bật và mã 13 số chưa có trong danh mục. Đọc được thì tự điền 7 số vào cột SKU; đọc không được thì để trống – bạn bấm nút hình thẻ giá cạnh dòng để nhập tay.</small></div><input type="checkbox" data-k="ocrScan"></div>
 
 <div class="gi"><div class="gx"><b>Bộ đọc chữ</b><small id="ocrst">…</small></div></div></div>
 <div class="gt">Độ chính xác khi quét mã vạch</div>
@@ -1248,7 +1232,7 @@ function renameDone(save){const sp=$('sname'),inp=$('snin');if(inp.style.display
 $('snin').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();renameDone(true)}else if(e.key==='Escape')renameDone(false)};$('snin').onblur=()=>renameDone(true);
 function promptRename(s,done){dlgForm('Đổi tên phiên',[{label:'Tên phiên',value:s.name}],'Lưu',v=>{if(!v[0]){toast('Tên không được để trống');return false}s.name=v[0];saveSS();done&&done()})}
 $('dname').onclick=()=>{if(cur&&promptRename(cur))renderD()};
-function renderL(){const el=$('llist'),ls=SS.filter(s=>!isJunk(s)&&tyOf(s)===LT);$('ltitle').textContent=LT==='tc'?'Danh sách phiên scan barcode':'Danh sách phiên kiểm kê';el.innerHTML=ls.length?ls.slice().reverse().map(s=>{const on=!!(CFG.act&&CFG.act[LT]===s.id);return`<div class="card${on?' actv':''}"><div class="nm">${on?'<span class="abg">● Đang hoạt động</span>':''}${esc(s.name)}</div><div class="mu">${s.rows.length} dòng | SL: ${s.rows.reduce((a,r)=>a+r.q,0)}</div><div style="display:flex;gap:6px;margin-top:8px"><button data-a="c" data-i="${s.id}">Tiếp tục</button><button class="g" data-a="d" data-i="${s.id}">Chi tiết</button><button class="gr" data-a="r" data-i="${s.id}">Đổi tên</button><button class="rd" data-a="x" data-i="${s.id}">Xóa</button></div></div>`}).join(''):'<div class="msg">Chưa có phiên nào</div>';
+function renderL(){const el=$('llist'),ls=SS.filter(s=>!isJunk(s)&&tyOf(s)===LT);$('ltitle').textContent=LT==='tc'?'Danh sách phiên ScanBarcode':'Danh sách phiên kiểm kê';el.innerHTML=ls.length?ls.slice().reverse().map(s=>{const on=!!(CFG.act&&CFG.act[LT]===s.id);return`<div class="card${on?' actv':''}"><div class="nm">${on?'<span class="abg">● Đang hoạt động</span>':''}${esc(s.name)}</div><div class="mu">${s.rows.length} dòng | SL: ${s.rows.reduce((a,r)=>a+r.q,0)}</div><div style="display:flex;gap:6px;margin-top:8px"><button data-a="c" data-i="${s.id}">Tiếp tục</button><button class="g" data-a="d" data-i="${s.id}">Chi tiết</button><button class="gr" data-a="r" data-i="${s.id}">Đổi tên</button><button class="rd" data-a="x" data-i="${s.id}">Xóa</button></div></div>`}).join(''):'<div class="msg">Chưa có phiên nào</div>';
  el.onclick=e=>{const b=e.target.closest('button');if(!b)return;const s=SS.find(x=>x.id==b.dataset.i);if(b.dataset.a==='x'){cfm('Xóa phiên này?\n'+s.name,'Xóa',()=>{SS=SS.filter(x=>x!==s);if(cur===s)cur=null;saveSS();renderL()})}else if(b.dataset.a==='r'){promptRename(s,renderL)}else{if(b.dataset.a==='c'){VPREV=undefined;cur=s;go('ses')}else{VPREV=cur;cur=s;openDet()}}}}
 function clr(){cfm('Xóa toàn bộ dòng của phiên?','Xóa hết',()=>{cur.rows=[],saveSS(),renderS()})}
 function delAll(t){const s=lastSes(t);if(!s)return toast('Chưa có phiên nào');cfm('Xóa dữ liệu phiên "'+s.name+'"?','Xóa',()=>{s.rows=[],saveSS(),toast('Đã xóa')})}
